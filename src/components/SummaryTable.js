@@ -7,7 +7,9 @@ export default function SummaryTable() {
 
   return (
     <div className="mt-6">
-      <h3 className="text-lg font-medium">Summary of Your Selection</h3>
+      <h3 className="text-lg font-semibold text-blue-700">
+        📋 Summary of Your Selection
+      </h3>
       <table className="min-w-full bg-white mt-4 shadow-md rounded-lg">
         <thead>
           <tr className="bg-gray-100 border-b">
@@ -16,30 +18,32 @@ export default function SummaryTable() {
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b">
+          <tr className="border-b hover:bg-gray-50 transition-all">
             <td className="p-4 font-medium">Start Date</td>
-            <td className="p-4">
+            <td className={`p-4 ${!startDate ? "text-red-500" : ""}`}>
               {startDate ? startDate.toDateString() : "Not selected"}
             </td>
           </tr>
-          <tr className="border-b">
+          <tr className="border-b hover:bg-gray-50 transition-all">
             <td className="p-4 font-medium">End Date</td>
-            <td className="p-4">
+            <td className={`p-4 ${!endDate ? "text-red-500" : ""}`}>
               {endDate ? endDate.toDateString() : "Not selected"}
             </td>
           </tr>
-          <tr className="border-b">
+          <tr className="border-b hover:bg-gray-50 transition-all">
             <td className="p-4 font-medium">Recurrence Pattern</td>
-            <td className="p-4">
+            <td className={`p-4 ${!recurrencePattern ? "text-red-500" : ""}`}>
               {recurrencePattern
-                ? recurrencePattern.charAt(0).toUpperCase() +
-                  recurrencePattern.slice(1)
-                : "Not selected"}
+                ? `🔁 ${
+                    recurrencePattern.charAt(0).toUpperCase() +
+                    recurrencePattern.slice(1)
+                  }`
+                : "❌ Not selected"}
             </td>
           </tr>
-          {/* Recurrence options, such as interval and specific days, if applicable */}
+
           {recurrenceOptions && Object.keys(recurrenceOptions).length > 0 && (
-            <tr className="border-b">
+            <tr className="border-b hover:bg-gray-50 transition-all">
               <td className="p-4 font-medium">Recurrence Details</td>
               <td className="p-4">
                 {Object.entries(recurrenceOptions).map(([key, value]) => (
@@ -47,7 +51,7 @@ export default function SummaryTable() {
                     <strong>
                       {key.charAt(0).toUpperCase() + key.slice(1)}:
                     </strong>{" "}
-                    {value}
+                    {Array.isArray(value) ? value.join(", ") : value}
                   </div>
                 ))}
               </td>
@@ -55,6 +59,11 @@ export default function SummaryTable() {
           )}
         </tbody>
       </table>
+
+      {/* Optional friendly footer */}
+      <p className="text-xs text-gray-400 text-right mt-2 italic">
+        You can change your selections anytime.
+      </p>
     </div>
   );
 }

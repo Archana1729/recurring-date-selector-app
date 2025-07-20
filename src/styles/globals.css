@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  @apply bg-gray-100 text-gray-800;
+html,
+body {
+  @apply bg-cyan-100 text-gray-800; /* Changed to aqua-like background */
 }
 
 .react-calendar__tile--active {
-  background: #2563eb !important; 
+  background: #2563eb !important;
   color: white !important;
 }
 
@@ -15,11 +16,9 @@ html, body {
   font-weight: bold;
   background-color: darkkhaki;
   border-radius: 100%;
-  
 }
 
 /* MiniCalendarPreview.css */
-
 .calendar-container {
   position: relative;
   border: 2px solid #ddd;
@@ -41,11 +40,10 @@ html, body {
 
 .highlighted-date {
   background-color: #4caf50; /* Green background for highlighted dates */
-  color: white; /* White text color */
+  color: white;
   font-weight: bold;
 }
 
 .react-calendar__tile:enabled:hover {
-  background-color: #f0f0f0; /* Light gray on hover */
+  background-color: #f0f0f0;
 }
-
